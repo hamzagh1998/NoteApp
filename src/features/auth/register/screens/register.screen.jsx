@@ -1,12 +1,19 @@
 import React from "react";
-import { Text } from "react-native";
 
-import { SafeAreaContainer } from "../../../../components/containers/safe-area-container";
+import { RegisterComponent } from "../components/register.component";
 
-export function RegisterScreen() {
+import { AuthContainer } from "../../../../components/containers/auth-container";
+
+
+export function RegisterScreen({navigation}) {
+
+  const onLogin = () => navigation.navigate("Login");
+
   return (
-    <SafeAreaContainer>
-      <Text>register</Text>
-    </SafeAreaContainer>
+    <AuthContainer >
+      <RegisterComponent
+        onLogin={onLogin}
+      />
+    </AuthContainer>
   );
 };
