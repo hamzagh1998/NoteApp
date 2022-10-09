@@ -29,7 +29,7 @@ export function NotesNavigator() {
     dispatch(setStoredToken({token: null, isLoading: false}));
     (async () => {
       try {
-        await AsyncStorage.removeItem
+        await AsyncStorage.removeItem("@token");
       } catch (error) {
         console.log("error removing token from async storage:", error);
       };

@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { StyleSheet, View, Image, Text, Dimensions } from "react-native";
 import { Card, Button, Icon } from "@rneui/themed";
 
-import { Title, Label } from "../typography/text";
+import { Title } from "../typography/text";
 import { Spacer } from "../spacer/spacer";
 
 const width = Dimensions.get("window").width;
 
-export function AuthCard({title, onGoogleButtonPress, children}) {
+export function AuthCard({title, onGoogleButtonPress, onFacebookButtonPress, children}) {
 
   const [isLoadingG, setIsLoadingG] = useState(false);
   const [isLoadingF, setIsLoadingF] = useState(false);
-  const [isLoadingT, setIsLoadingT] = useState(false);
 
   return (
       <Card>
@@ -46,23 +45,19 @@ export function AuthCard({title, onGoogleButtonPress, children}) {
           </Button>
           <Spacer />
           <Button 
+            onPress={async () => {
+              setIsLoadingF(true);
+              await onFacebookButtonPress();
+              setIsLoadingF(false);
+            }}
             buttonStyle={{...style.buttonStyle, backgroundColor: "#3b5998"}} 
+            loading={isLoadingF}
             size="lg"
           >
             <Spacer position="right">
               <Icon name="logo-facebook" type="ionicon" color="#fff" />
             </Spacer>
             {title} with Facebook
-          </Button>
-          <Spacer />
-          <Button 
-            buttonStyle={{...style.buttonStyle, backgroundColor: "#1da1f2"}} 
-            size="lg"
-          >
-            <Spacer position="right">
-              <Icon name="logo-twitter" type="ionicon" color="#fff" />
-            </Spacer>
-            {title} with Twitter
           </Button>
           <Spacer />
           {children}

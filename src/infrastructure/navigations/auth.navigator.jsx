@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 import { LoginScreen } from "../../features/auth/login/screens/login.screen";
 import { RegisterScreen } from "../../features/auth/register/screens/register.screen";
