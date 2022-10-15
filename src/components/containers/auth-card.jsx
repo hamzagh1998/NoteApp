@@ -6,6 +6,7 @@ import { Title } from "../typography/text";
 import { Spacer } from "../spacer/spacer";
 
 const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 
 export function AuthCard({title, onGoogleButtonPress, onFacebookButtonPress, children}) {
 
@@ -13,13 +14,13 @@ export function AuthCard({title, onGoogleButtonPress, onFacebookButtonPress, chi
   const [isLoadingF, setIsLoadingF] = useState(false);
 
   return (
-      <Card>
+      <Card containerStyle={{height: (height*70)/100}}>
         <View style={style.cardContainer}>
           <Image 
             source={require("../../assets/notes.png")}
-            style={{width: 150, height: 150}}
-            width={150}
-            height={150}
+            style={{width: 175, height: 175}}
+            width={175}
+            height={175}
           />
           <Text style={style.textStyle}>NoteApp</Text>
          <Title text={title} />
@@ -78,8 +79,8 @@ const style = StyleSheet.create({
     color: "#ff6f00"
   },
   buttonStyle: {
-    padding: 10,
-    height: 55,
+    padding: 15,
+    height: 60,
     width: (width*75)/100,
     borderRadius: 12.5,
   },

@@ -25,6 +25,8 @@ export function NotesNavigator() {
   const themeMode = useSelector(state => state.theme.mode);
   const theme = useSelector(state => state.theme.currentTheme);
 
+  const {name, photoUrl} = useSelector(state => state.user.value);
+
   const onLogout = () => {
     dispatch(setStoredToken({token: null, isLoading: false}));
     (async () => {
@@ -54,7 +56,7 @@ export function NotesNavigator() {
         component={AllNotesScreen} 
         options={
           ({ navigation, route }) => ({
-            title: "hamza",
+            title: name ? name : null,
             headerRight: () => (
              <>
                <TouchableOpacity onPress={() => dispatch(toggleTheme())}>
@@ -79,8 +81,9 @@ export function NotesNavigator() {
             headerLeft: () =>(
               <Spacer position="right">
                 <Avatar
-                  source={{ uri: "https://s3.amazonaws.com/appforest_uf/f1579307395773x896318573488014000/157930731729444037.png" }}
+                  source={{ uri: photoUrl ? photoUrl : null }}
                   size={44}
+                  rounded
                 />
               </Spacer>
             )
