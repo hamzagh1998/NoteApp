@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NoteApp</string>
+    <string name="facebook_app_id">641418940767730</string>
+    <string name="facebook_client_token">fee44c5b41ff1c43c098f9c09706e877</string>
 </resources>

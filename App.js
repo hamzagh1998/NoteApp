@@ -7,7 +7,7 @@ import { Navigator } from "./src/infrastructure/navigations/navigator";
 
 
 function App() {
-    
+
   return (
     <Provider store={store}>
       <Navigator />
