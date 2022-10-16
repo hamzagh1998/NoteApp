@@ -5,7 +5,7 @@ export async function signIn(payload) {
     const res = await axios.post("/auth/signin", payload);
     return res.data;
   } catch (error) {
-    console.log("Error signIn:", error);
-    return error;
+    console.log("Error signIn: " + error);
+    return "Error signIn!" ;
   };
 };

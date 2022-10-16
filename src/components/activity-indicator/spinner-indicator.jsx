@@ -5,7 +5,7 @@ export function SpinnerIndicator() {
   
   return (
       <View style={[styles.container, styles.horizontal]}>
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#9b59b6" />
       </View>
     );
 };

@@ -20,13 +20,11 @@ export function Navigator() {
   const token = useSelector(state => state.token.value);
   const isLoading = useSelector(state => state.token.isLoading);
   const dispatch = useDispatch();
-
-  console.log(isLoading);
   
   const [theme, _] = useAsyncStorage("@theme", "light");
   const [userToken, __] = useAsyncStorage("@token");
 
-  axios.defaults.baseURL = "http://192.168.43.55:4000/api";
+  axios.defaults.baseURL = "http://192.168.1.20:4000/api";
   if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
   useEffect(() => {

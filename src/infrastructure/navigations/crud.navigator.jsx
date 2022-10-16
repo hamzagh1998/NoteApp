@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { CreateNoteScreen } from "../../features/notes/crud/create/screens/create-note.screen";
+import { CreateContentScreen } from "../../features/notes/crud/create/screens/create-content.screen";
 import { UpdateNoteScreen } from "../../features/notes/crud/update/screens/update-note.screen";
 
 export function CrudNavigator() {
@@ -13,7 +13,7 @@ export function CrudNavigator() {
     >
       <CrudStackNavigator.Screen 
         name="Create" 
-        component={CreateNoteScreen} 
+        component={CreateContentScreen} 
         options={{headerShown: false}}
       />
       <CrudStackNavigator.Screen 

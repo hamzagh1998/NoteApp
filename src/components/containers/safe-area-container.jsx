@@ -9,7 +9,7 @@ export function SafeAreaContainer({children}) {
 
   return (
     <View 
-      style={{flex: 1, backgroundColor: bgColor, padding: 10}}
+      style={{flex: 1, backgroundColor: bgColor, padding: 5}}
     >
       {children}
     </View>
