@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 
-import { getNote } from "../../../../../api/note";
+import { getChecklist } from "../../../../../api/checklist";
 
-import { NoteDetailComponent } from "../components/note-detail.component";
+import { CheckDetailComponent } from "../components/checklist-detail.component";
 
 import { SafeAreaContainer } from "../../../../../components/containers/safe-area-container";
 import { SpinnerIndicator } from "../../../../../components/activity-indicator/spinner-indicator";
 
 
-export function NoteDetailScreen({ navigation, route }) {
-  
-  const { noteId } = route.params;
+export function ChecklistDetailScreen({ navigation, route }) {
+
+  const { checklistId } = route.params;
 
   const isFocused = useIsFocused();
 
-  const [note, setNote] = useState(null);
+  const [checklist, setChecklist] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const getNoteDetail = async () => {
-    const data = await getNote(noteId);
+    const data = await getChecklist(checklistId);
     data.error 
       ? setError(data.detail) 
-      : setNote(data.detail);
+      : setChecklist(data.detail);
     setIsLoading(false);
   };
 
@@ -31,13 +31,12 @@ export function NoteDetailScreen({ navigation, route }) {
     getNoteDetail();
   }, [isFocused]);
 
-  
   return (
     <SafeAreaContainer>
       {
         isLoading
           ? <SpinnerIndicator />
-          : <NoteDetailComponent note={note} />
+          : <CheckDetailComponent checklist={checklist} />
       }
     </SafeAreaContainer>
   );

@@ -44,6 +44,7 @@ export function CreateNoteComponent({ note, setNote, onSaveNote }) {
               </Button>
             : null
         }
+        <Spacer position="bot" size="xxl" />
       </ScrollView>
     </View>
   );

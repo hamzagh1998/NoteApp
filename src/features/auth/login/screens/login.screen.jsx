@@ -27,8 +27,6 @@ export function LoginScreen({navigation}) {
   useEffect(() => {
     if (token) setUserToken(token);
   }, [token]);
-
-  const onRegister = () => navigation.navigate("Register");
   
   const onGoogleButtonPress = async () => {
     try {
@@ -40,8 +38,10 @@ export function LoginScreen({navigation}) {
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         const credential = await auth().signInWithCredential(googleCredential);
+        // we"ll send this token to our backend via HTTPS
+        const token = await auth().currentUser.getIdToken(true);
         const { name, email, picture: photoUrl } = credential.additionalUserInfo.profile;
-        const data = await signIn({ name, email, photoUrl });
+        const data = await signIn(token, { name, email, photoUrl });
         if (data.error) {
           console.log(data.detail);
         } else {
@@ -79,8 +79,10 @@ export function LoginScreen({navigation}) {
         // Create a Firebase credential with the AccessToken
         const facebookCredential = auth.FacebookAuthProvider.credential(accessToken);
         const credential = await auth().signInWithCredential(facebookCredential);
+        // we"ll send this token to our backend via HTTPS
+        const token = await auth().currentUser.getIdToken(true);
         const { displayName: name, email, photoURL: photoUrl } = credential.user;
-        const data = await signIn({ name, email, photoUrl });
+        const data = await signIn(token, { name, email, photoUrl });
         if (data.error) {
           console.log(data.detail);
         } else {
@@ -105,7 +107,6 @@ export function LoginScreen({navigation}) {
   return (
     <AuthContainer >
       <LoginComponent
-        onRegister={onRegister}
         onGoogleButtonPress={onGoogleButtonPress}
         onFacebookButtonPress={onFacebookButtonPress}
       />

@@ -32,8 +32,7 @@ export function Navigator() {
       const decoded = jwt_decode(userToken);
       dispatch(setUserData({userData: decoded}));
       dispatch(setStoredToken({token: userToken, isLoading: false}));
-    }
-    else dispatch(setStoredToken({token: null, isLoading: false}));
+    } else dispatch(setStoredToken({token: null, isLoading: false}));
   }, [userToken]);
 
   useEffect(() => {

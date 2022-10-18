@@ -64,7 +64,7 @@ export function CreateCheckListComponent({ checklist, setChecklist, onSaveCheckl
       >
         {
           items.length
-            ? items.map(item => (
+          ? items.map(item => (
               <View style={styles().itemsContainer}>
                 <CheckBox 
                   key={item.id}
@@ -92,7 +92,7 @@ export function CreateCheckListComponent({ checklist, setChecklist, onSaveCheckl
         </Button>
         <Spacer />
         {
-          items.length
+          (title.length && items.length)
             ? <Button 
                 containerStyle={styles().buttonStyle}
                 onPress={onSaveChecklist}
@@ -138,13 +138,14 @@ const styles = (bgColor="", color="") => (StyleSheet.create({
   scrollViewStyle: {
     flex: 4,
     width: "100%",
-    marginBottom: "28%"
+    marginBottom: "36%",
   },  
   itemsContainer: {
     flexDirection: "row",
     justifyContent: "space-between"
   },  
   checkBoxContainerStyle: {
+    width: "85%",
     backgroundColor: bgColor,
     alignSelf: "center",
     justifyContent: "center",
@@ -155,7 +156,7 @@ const styles = (bgColor="", color="") => (StyleSheet.create({
   },
   buttonContainer: {
     position: "absolute",
-    bottom: "4.5%"
+    bottom: "4%",
   }, 
   dialogStyle: {
     backgroundColor: bgColor,

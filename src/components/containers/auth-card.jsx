@@ -14,7 +14,7 @@ export function AuthCard({title, onGoogleButtonPress, onFacebookButtonPress, chi
   const [isLoadingF, setIsLoadingF] = useState(false);
 
   return (
-      <Card containerStyle={{height: (height*70)/100}}>
+      <Card containerStyle={style.cardStyle}>
         <View style={style.cardContainer}>
           <Image 
             source={require("../../assets/notes.png")}
@@ -27,7 +27,7 @@ export function AuthCard({title, onGoogleButtonPress, onFacebookButtonPress, chi
         </View>
         <Spacer position="top" size="large" />
         <View style={style.divider} />
-        <Spacer size="large" />
+        <Spacer size="xxl" />
         <View style={style.cardContainer}>
           <Button 
             onPress={async () => {
@@ -68,6 +68,12 @@ export function AuthCard({title, onGoogleButtonPress, onFacebookButtonPress, chi
 };
 
 const style = StyleSheet.create({
+  cardStyle: {
+    height: (height*65)/100, 
+    width: (width*95)/100, 
+    alignSelf: "center",
+    marginTop: 40,
+  },
   cardContainer: {
     alignSelf: "center",
     justifyContent: "center",
@@ -80,7 +86,7 @@ const style = StyleSheet.create({
   },
   buttonStyle: {
     padding: 15,
-    height: 60,
+    height: 58,
     width: (width*75)/100,
     borderRadius: 12.5,
   },
