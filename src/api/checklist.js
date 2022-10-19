@@ -29,3 +29,23 @@ export async function createChecklist(payload) {
     return "Error creating checklist!" ;
   };
 };
+
+export async function updateChecklist(checklistId, payload) {
+  try {
+    const res = await axios.put("/checklist/" + checklistId, { payload });
+    return res.data;
+  } catch (error) {
+    console.log("Error updating checklist: " + error);
+    return "Error updating checklist!";
+  };
+};
+
+export async function deleteChecklist(checklistId) {
+  try {
+    const res = await axios.delete("/checklist/" + checklistId);
+    return res.data;
+  } catch (error) {
+    console.log("Error updating checklist: " + error);
+    return "Error updating checklist!";
+  };
+};

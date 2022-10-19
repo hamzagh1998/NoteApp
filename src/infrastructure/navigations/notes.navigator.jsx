@@ -114,7 +114,12 @@ export function NotesNavigator() {
               title: "Note detail",
               headerRight: () => (
                 <>
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity onPress={
+                    () => 
+                    navigation.navigate("_", {screen: "UpdateNote", params: {
+                      noteData: { noteId, secure, favorite, onStarNote, onLockNote, onDeleteNote }
+                    }})
+                  }>
                     <Icon 
                       name="pencil" 
                       type="ionicon" 
@@ -173,16 +178,21 @@ export function NotesNavigator() {
               title: "Checklist detail",
               headerRight: () => (
                 <>
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity onPress={
+                    () => 
+                    navigation.navigate("_", {screen: "UpdateChecklist", params: {
+                      checklistData: { checklistId, secure, favorite, onStarChecklist, onLockChecklist, onDeleteChecklist }
+                    }})
+                  }>
                     <Icon 
                       name="pencil" 
                       type="ionicon" 
                       size={26} 
                       color={theme.colors.primary}
-                      />
+                    />
                   </TouchableOpacity>
                   <Spacer position="right" size="large" />
-                  <TouchableOpacity onPress={() => onStarChecklist(checklistId)}>
+                  <TouchableOpacity onPress={() => onStarChecklist(checklistId, "DetailChecklist")}>
                     <Icon 
                       name={favorite ? "star" : "star-outline"} 
                       type="ionicon" 
@@ -192,8 +202,13 @@ export function NotesNavigator() {
                   </TouchableOpacity>
                   <Spacer position="right" size="large" />
                   <TouchableOpacity onPress={() => {
-                      setVisible(true);
-                      onLockChecklist(checklistId)
+                      if (!secure) {
+                        setVisible(true);
+                        setLockCallback({callback: onLockChecklist, args: [checklistId]});
+                      } else {
+                        onLockChecklist(checklistId, null);
+                      };
+                      setNotePassword("");
                     }  
                   }>
                     <Icon 

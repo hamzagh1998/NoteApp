@@ -15,12 +15,12 @@ export function CreateNoteComponent({ note, setNote, onSaveNote }) {
   return (
     <View style={styles.container}>
       <Spacer size="large" />
-        <Label text="Create new note" />
-        <Spacer />
-        <ScrollView 
-          showsVerticalScrollIndicator={false}
-          style={styles.scrollViewStyle}
-        >
+      <Label text="Create new note" />
+      <Spacer />
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollViewStyle}
+      >
         <Input 
           value={title}
           onChangeText={text => setNote({...note, title: text})}

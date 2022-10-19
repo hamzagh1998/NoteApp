@@ -8,7 +8,7 @@ function Title({text}) {
   const color = theme.colors.primary;
 
   return (
-    <Text h2 style={{color}}>{text}</Text>
+    <Text h2 selectable={true} style={{color}}>{text}</Text>
   );
 };
 
@@ -18,7 +18,7 @@ function Label({text}) {
   const color = theme.colors.secondary;
 
   return (
-    <Text h4 style={{color}}>{text}</Text>
+    <Text h4 selectable={true} style={{color}}>{text}</Text>
   );
 };
 
@@ -28,7 +28,7 @@ function Body({text}) {
   const color = theme.colors.secondary;
 
   return (
-    <Text h5 style={{color}}>{text}</Text>
+    <Text h5 selectable={true} style={{color}}>{text}</Text>
   );
 };
 
@@ -37,7 +37,7 @@ function Tiny({text}) {
   const color = theme.colors.secondary;
 
   return (
-    <Text style={{color, fontSize: 12}}>{text}</Text>
+    <Text selectable={true} style={{color, fontSize: 12}}>{text}</Text>
   );
 }
 

@@ -70,7 +70,7 @@ export function CreateContentScreen({ navigation }) {
           icon={{ name: "checkmark", type: "ionicon", color: color}}
         ></Tab.Item>
       </Tab>
-      <TabView value={value}>
+      <TabView value={value} onChange={() => value === 0 ? setValue(1) : setValue(0)}>
         <TabView.Item width="100%">
           <CreateNoteComponent
             note={note}  

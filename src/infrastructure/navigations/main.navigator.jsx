@@ -25,14 +25,14 @@ export function MainNavigator() {
       tabBarIcon: ({ focused, color, size }) => {
         const iconName = focused ? TAB_ICON[route.name][0]: TAB_ICON[route.name][1];
         return route.name === "_"
-                ? <AddNewBtn onPress={() => navigation.navigate("_")} />
+                ? <AddNewBtn onPress={() => navigation.navigate("_", { screen: "Create" })} />
                 : <Icon name={iconName} type="ionicon" size={size+5} color={color} />; 
       },
       tabBarActiveTintColor: theme.colors.primary,
       tabBarInactiveTintColor: theme.colors.secondary,
       tabBarShowLabel: false,
       headerShown: false,
-      tabBarStyle: {height: 60, backgroundColor: theme.bgColors.primary}
+      tabBarStyle: {height: 60, backgroundColor: theme.bgColors.primary, borderTopWidth: 0}
     };
   };
 

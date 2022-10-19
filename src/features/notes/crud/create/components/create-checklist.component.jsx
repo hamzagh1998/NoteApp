@@ -142,6 +142,7 @@ const styles = (bgColor="", color="") => (StyleSheet.create({
   },  
   itemsContainer: {
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between"
   },  
   checkBoxContainerStyle: {

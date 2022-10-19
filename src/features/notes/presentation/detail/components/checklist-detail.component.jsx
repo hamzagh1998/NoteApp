@@ -29,7 +29,7 @@ export function CheckDetailComponent({checklist}) {
                       {
                         item.checked
                           ? <Icon name="checkmark" type="ionicon" size={26} color="#0f0" />
-                          : <Icon name="dots-three-horizontal" type="entypo" size={26} color="#7f8c8d" />
+                          : <Icon name="close" type="ionicon" size={26} color="#f33" />
                       }
                       <Spacer position="left" />
                       <Label text={item.title} />

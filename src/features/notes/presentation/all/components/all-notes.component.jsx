@@ -64,7 +64,9 @@ export function AllNotesComponent({ content, search, setSearch, setFilter, onCon
             </View>
           : null
       }
-      <Label text={content.title} /> 
+      <Label 
+        text={content.title.length > 17 ? content.title.slice(0, 17) + "...": content.title} 
+      /> 
     </TouchableOpacity>
   );
 
@@ -166,7 +168,6 @@ export function AllNotesComponent({ content, search, setSearch, setFilter, onCon
               password
                 ? <Button onPress={() => {
                   const { onContentDetail, args, contentPswrd } = lockCallback;
-                  console.log(password, contentPswrd);
                   if (password === contentPswrd) onContentDetail(...args);
                   else setError("Invalid password!")
                 }}>Enter</Button>
@@ -189,6 +190,9 @@ const styles = (bgColor="", color="") => (
       flex: 1,
     },
     boxContainer: {
+      borderRightWidth: 1,
+      borderBottomWidth: 1,
+      borderColor: "#7f8c8d",
       justifyContent: "center",
       alignItems: "center",
       margin: 5,

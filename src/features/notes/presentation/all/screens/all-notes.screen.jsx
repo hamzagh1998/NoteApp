@@ -6,9 +6,8 @@ import { SpinnerIndicator } from "../../../../../components/activity-indicator/s
 
 import { AllNotesComponent } from "../components/all-notes.component";
 
-import { getNotes, updateNote, deleteNote } from "../../../../../api/note";
-import { getNote } from "../../../../../api/note";
-import { getChecklists } from "../../../../../api/checklist";
+import { getNotes, getNote, updateNote, deleteNote } from "../../../../../api/note";
+import { getChecklists, getChecklist, updateChecklist, deleteChecklist } from "../../../../../api/checklist";
 
 
 export function AllNotesScreen({ navigation }) {
@@ -92,15 +91,58 @@ export function AllNotesScreen({ navigation }) {
   };
   // checklist
   const onStarChecklist = async (checklistId, screenName) => {
-
+    const data = await getChecklist(checklistId);
+    if (data.error) {
+      setError(data.detail);
+    } else {
+      const { _id, favorite } = data.detail;
+      data.detail.favorite = !favorite;
+      const res = await updateChecklist(_id, data.detail);
+      if (res.error) {
+        setError(res.detail);
+      } else {
+        const { _id, secure, favorite } = res.detail;
+        const checklist = checklists.filter(checklist => checklist._id === checklistId)[0];
+        checklist.favorite = favorite;
+        setChecklists(checklists);
+        navigation.navigate(
+          screenName, 
+          {checklistId: _id, secure, favorite, onStarChecklist, onLockChecklist, onDeleteChecklist}
+        );
+      };
+    };
   };
 
-  const onLockChecklist = async checklistId => {
-
+  const onLockChecklist = async (checklistId, password) => {
+    const data = await getChecklist(checklistId);
+    if (data.error) {
+      setError(data.detail);
+    } else {
+      const { _id, secure } = data.detail;
+      data.detail.secure = !secure;
+      if (password) data.detail.password = password;
+      else data.detail.password = "";
+      const res = await updateChecklist(_id, data.detail);
+      if (res.error) {
+        setError(res.detail);
+      } else {
+        const { _id, favorite, secure } = res.detail;
+        const checklist = checklists.filter(checklist => checklist._id === checklistId)[0];
+        checklist.secure = secure;
+        setChecklists(checklists);
+        navigation.navigate(
+          "DetailChecklist", 
+          {checklistId: _id, secure, favorite, onStarChecklist, onLockChecklist, onDeleteChecklist}
+        );
+      };
+    };
   };
 
   const onDeleteChecklist = async checklistId => {
-
+    const data = await deleteChecklist(checklistId);
+    data.error
+      ? setError(data.detail)
+      : navigation.navigate("All");
   };
 
   useEffect(() => {
