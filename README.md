@@ -37,7 +37,7 @@ where you write notes and checklists and save them permanently in the cloud.
 Taking notes with NoteApp is easier than any other notepad or memo pad app.
 ### Tech Stack
 
-React-native, React Native Elements, redux-toolkit
+React Native, React Native Firebase, React Native Elements, redux-toolkit
 
 
 ### Run Locally
