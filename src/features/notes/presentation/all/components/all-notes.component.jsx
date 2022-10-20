@@ -25,6 +25,7 @@ export function AllNotesComponent({ name, content, search, setSearch, setFilter,
   const [lockCallback, setLockCallback] = useState(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [worngPassword, setworngPassword] = useState(false);
 
   const onDetail = (contentId, contentType, secure, favorite, password) => {
     if (secure) {
@@ -160,8 +161,8 @@ export function AllNotesComponent({ name, content, search, setSearch, setFilter,
               secureTextEntry
             />
             {
-              error 
-                ? <Error text={error} />
+              worngPassword 
+                ? <Error text={"Invalid password!"} />
                 : null
             }
             {
@@ -169,7 +170,7 @@ export function AllNotesComponent({ name, content, search, setSearch, setFilter,
                 ? <Button onPress={() => {
                   const { onContentDetail, args, contentPswrd } = lockCallback;
                   if (password === contentPswrd) onContentDetail(...args);
-                  else setError("Invalid password!")
+                  else setworngPassword(true);
                 }}>Enter</Button>
                 : null
             }

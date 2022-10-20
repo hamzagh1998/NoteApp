@@ -24,7 +24,7 @@ export function Navigator() {
   const [theme, _] = useAsyncStorage("@theme", "light");
   const [userToken, __, isLoading] = useAsyncStorage("@token");
 
-  axios.defaults.baseURL = "http://192.168.55.34:4000/api";
+  axios.defaults.baseURL = "http://192.168.1.20:4000/api";
   if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
   const CurrentNaviagtor = () => token ? <MainNavigator /> : <AuthNavigator />;

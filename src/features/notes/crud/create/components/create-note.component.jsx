@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { StyleSheet, View, Dimensions, ScrollView } from "react-native";
 import { Input, Button, Icon } from "@rneui/themed";
 
@@ -12,6 +13,9 @@ export function CreateNoteComponent({ note, setNote, onSaveNote }) {
 
   const { title, content } = note;
 
+  const currentTheme = useSelector(state => state.theme.currentTheme);
+  const color = currentTheme.colors.primary;
+
   return (
     <View style={styles.container}>
       <Spacer size="large" />
@@ -23,11 +27,13 @@ export function CreateNoteComponent({ note, setNote, onSaveNote }) {
       >
         <Input 
           value={title}
+          inputStyle={{color}}
           onChangeText={text => setNote({...note, title: text})}
           placeholder="Enter note title"
         />
         <Input 
           value={content}
+          inputStyle={{color}}
           onChangeText={text => setNote({...note, content: text})}
           multiline
           numberOfLines={4}
