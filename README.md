@@ -5,7 +5,7 @@
 ## Screenshots
 <div style="display: flex; flex-wrap: wrap">
   <div style="width: 60px ; height: 60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s1.png" width="100" height="100" />
+    <img src="https://m-note-app.herokuapp.com/screenshots/s1.png" width="320" height="320" />
   </div>
   <div style="width:60px ; height:60px">
     <img src="https://m-note-app.herokuapp.com/screenshots/s2.png" />
