@@ -18,21 +18,23 @@ import { SpinnerIndicator } from "../../components/activity-indicator/spinner-in
 export function Navigator() {
 
   const token = useSelector(state => state.token.value);
-  const isLoading = useSelector(state => state.token.isLoading);
+  // const isLoading = useSelector(state => state.token.isLoading);
   const dispatch = useDispatch();
   
   const [theme, _] = useAsyncStorage("@theme", "light");
-  const [userToken, __] = useAsyncStorage("@token");
+  const [userToken, __, isLoading] = useAsyncStorage("@token");
 
   axios.defaults.baseURL = "http://192.168.55.34:4000/api";
   if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+
+  const CurrentNaviagtor = () => token ? <MainNavigator /> : <AuthNavigator />;
 
   useEffect(() => {
     if (userToken) {
       const decoded = jwt_decode(userToken);
       dispatch(setUserData({userData: decoded}));
-      dispatch(setStoredToken({token: userToken, isLoading: false}));
-    } else dispatch(setStoredToken({token: null, isLoading: false}));
+      dispatch(setStoredToken({token: userToken}));
+    }
   }, [userToken]);
 
   useEffect(() => {
@@ -44,9 +46,7 @@ export function Navigator() {
       {
         isLoading 
           ? <SpinnerIndicator />
-          : token 
-            ? <MainNavigator />
-            : <AuthNavigator />
+          : <CurrentNaviagtor />
       }
     </NavigationContainer>
   );

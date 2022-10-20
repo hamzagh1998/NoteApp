@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 
 import { getChecklist } from "../../../../../api/checklist";
@@ -38,6 +39,7 @@ export function ChecklistDetailScreen({ navigation, route }) {
           ? <SpinnerIndicator />
           : <CheckDetailComponent checklist={checklist} />
       }
+      { error ? Alert.alert("Error", error) : null}
     </SafeAreaContainer>
   );
 };

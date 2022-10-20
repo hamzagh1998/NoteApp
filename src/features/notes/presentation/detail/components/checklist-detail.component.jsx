@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import { Icon } from "@rneui/base";
 import { useSelector } from "react-redux";
 
-import { Title, Label } from "../../../../../components/typography/text";
+import { Title, Body } from "../../../../../components/typography/text";
 import { Spacer } from "../../../../../components/spacer/spacer";
 
 export function CheckDetailComponent({checklist}) {
@@ -32,7 +32,7 @@ export function CheckDetailComponent({checklist}) {
                           : <Icon name="close" type="ionicon" size={26} color="#f33" />
                       }
                       <Spacer position="left" />
-                      <Label text={item.title} />
+                      <Body text={item.title} />
                     </View>
                     <Spacer size="xxl" />
                   </View>

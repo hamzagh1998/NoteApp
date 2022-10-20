@@ -28,7 +28,7 @@ function Body({text}) {
   const color = theme.colors.secondary;
 
   return (
-    <Text h5 selectable={true} style={{color}}>{text}</Text>
+    <Text selectable={true} style={{color, fontSize: 16, fontWeight: "bold"}}>{text}</Text>
   );
 };
 

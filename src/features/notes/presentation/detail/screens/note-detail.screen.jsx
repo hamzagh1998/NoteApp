@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 
 import { getNote } from "../../../../../api/note";
@@ -39,6 +40,7 @@ export function NoteDetailScreen({ navigation, route }) {
           ? <SpinnerIndicator />
           : <NoteDetailComponent note={note} />
       }
+      { error ? Alert.alert("Error", error) : null}
     </SafeAreaContainer>
   );
 };

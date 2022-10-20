@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Alert } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 
 import { SafeAreaContainer } from "../../../../../components/containers/safe-area-container";
@@ -10,9 +11,11 @@ import { getNotes, getNote, updateNote, deleteNote } from "../../../../../api/no
 import { getChecklists, getChecklist, updateChecklist, deleteChecklist } from "../../../../../api/checklist";
 
 
-export function AllNotesScreen({ navigation }) {
+export function AllNotesScreen({ navigation, route }) {
 
   const isFocused = useIsFocused();
+
+  const { route: { name } } = { route };
 
   const [notes, setNotes] = useState([]);
   const [checklists, setChecklists] = useState([]);
@@ -24,15 +27,36 @@ export function AllNotesScreen({ navigation }) {
 
   const getAllNotes = async () => {
     const data = await getNotes();
-    data.error ? setError(data.detail) : setNotes(data.detail);
+    if (data.error) {
+      setError(data.detail);
+    } else {
+      name === "All"
+        ? setNotes(data.detail)
+        : setNotes(data.detail.filter(note => note.favorite));
+    }
+    
     setIsLoading(false);
   };
 
   const getAllChecklists = async () => {
     setIsLoading(true);
     const data = await getChecklists();
-    data.error ? setError(data.detail) : setChecklists(data.detail);
+    if (data.error) {
+      setError(data.detail)
+    } else {
+      name === "All"
+        ? setChecklists(data.detail)
+        : setChecklists(data.detail.filter(note => note.favorite));
+    };
     setIsLoading(false);
+  };
+
+  const updateContent = () => {
+    filter === "all"
+      ? setContent([...notes, ...checklists].filter(c => c.title.toLowerCase().includes(search.toLowerCase())))
+      : filter === "notes"
+        ? setContent([...notes].filter(c => c.title.toLowerCase().includes(search.toLowerCase())))
+        : setContent([...checklists].filter(c => c.title.toLowerCase().includes(search.toLowerCase())));
   };
 
   const onStarNote = async (noteId, screenName) => {
@@ -146,6 +170,7 @@ export function AllNotesScreen({ navigation }) {
   };
 
   useEffect(() => {
+    setSearch("");
     setFilter("all");
     getAllNotes();
     getAllChecklists();
@@ -157,7 +182,12 @@ export function AllNotesScreen({ navigation }) {
       : filter === "notes"
         ? setContent([...notes])
         : setContent([...checklists]);
+    updateContent();
   }, [filter, notes, checklists]);
+
+  useEffect(() => {
+    updateContent();
+  },[search]);
 
   const onContentDetail = (contentId, type, secure, favorite) => {
     type === "note"
@@ -178,6 +208,7 @@ export function AllNotesScreen({ navigation }) {
         isLoading
           ? <SpinnerIndicator />
           : <AllNotesComponent 
+              name={name}
               content={content}
               search={search}
               setSearch={setSearch}
@@ -187,6 +218,7 @@ export function AllNotesScreen({ navigation }) {
               onStarChecklist={onStarChecklist}
             />
       }
+      { error ? Alert.alert("Error", error) : null}
     </SafeAreaContainer>
   );
 };

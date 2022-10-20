@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { NotesNavigator } from "./notes.navigator";
 import { CrudNavigator } from "./crud.navigator";
-import { FavoriteNotesScreen } from "../../features/notes/favorites/screens/favorite-notes.screen";
+import { AllNotesScreen } from "../../features/notes/presentation/all/screens/all-notes.screen";
 
 import { AddNewBtn } from "../../components/buttons/add-new-btn";
 
@@ -48,7 +48,7 @@ export function MainNavigator() {
       />
       <MainBottomTabNavigator.Screen
         name="Favorites"
-        component={FavoriteNotesScreen}
+        component={AllNotesScreen}
       />
     </MainBottomTabNavigator.Navigator>
   )

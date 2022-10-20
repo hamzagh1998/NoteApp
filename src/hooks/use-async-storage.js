@@ -4,14 +4,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export function useAsyncStorage(key, initialValue=null) {
   const [storedValue, setStoredValue] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getStoredItem = async (key, initialValue) => {
     try {
       const item = await AsyncStorage.getItem(key);
       const value = item ? JSON.parse(item) : initialValue;
+      setIsLoading(false);
       setStoredValue(value);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     };
   };
 
@@ -31,5 +34,5 @@ export function useAsyncStorage(key, initialValue=null) {
     getStoredItem(key, initialValue);
   }, [key, initialValue]);
 
-  return [storedValue, setValue];
+  return [storedValue, setValue, isLoading];
 };

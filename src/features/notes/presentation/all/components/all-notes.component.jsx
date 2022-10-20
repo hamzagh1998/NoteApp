@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
+import { Dimensions, StyleSheet, View, ScrollView, TouchableOpacity, Alert } from "react-native";
 import { useSelector } from "react-redux";
 import { Icon } from "@rneui/base";
 import { SearchBar, CheckBox, Dialog, Input, Button } from "@rneui/themed";
@@ -10,7 +10,7 @@ import { Label, Error } from "../../../../../components/typography/text";
 
 const screenWidth = Dimensions.get("window").width;
 
-export function AllNotesComponent({ content, search, setSearch, setFilter, onContentDetail, onStarNote, onStarChecklist }) {
+export function AllNotesComponent({ name, content, search, setSearch, setFilter, onContentDetail, onStarNote, onStarChecklist }) {
 
   const currentTheme = useSelector(state => state.theme.currentTheme);
   const theme = useSelector(state => state.theme.mode);
@@ -47,8 +47,8 @@ export function AllNotesComponent({ content, search, setSearch, setFilter, onCon
         <TouchableOpacity 
           onPress={() => {
             content.items 
-              ? onStarChecklist(content._id, "All")
-              : onStarNote(content._id, "All") ;
+              ? onStarChecklist(content._id, name)
+              : onStarNote(content._id, name) ;
           }}
         >
           <Icon name={content.favorite ? "star" : "star-outline"} type="ionicon" color={iconColor} size={26} />
@@ -113,16 +113,16 @@ export function AllNotesComponent({ content, search, setSearch, setFilter, onCon
 
   return (
     <>
+      <SearchBar 
+        round
+        value={search}
+        onChangeText={text => setSearch(text)} 
+        lightTheme={theme === "light"}
+        placeholder="Search for something!"
+      />
       {
         content && content.length
           ? <View style={styles().contentContainer}>
-              <SearchBar 
-                round
-                value={search}
-                onChangeText={text => setSearch(text)} 
-                lightTheme={theme === "light"}
-                placeholder="Search for something!"
-              />
               <Spacer />
               <FilterBox />
               <ScrollView showsVerticalScrollIndicator={false}>
@@ -174,6 +174,7 @@ export function AllNotesComponent({ content, search, setSearch, setFilter, onCon
                 : null
             }
       </Dialog>
+      { error ? Alert.alert("Error", error) : null}
     </>
   );
 };

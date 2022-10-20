@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Avatar, Icon, Dialog, Input, Button } from "@rneui/themed";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -154,7 +154,22 @@ export function NotesNavigator() {
                       />
                   </TouchableOpacity>
                   <Spacer position="right" size="large" />
-                  <TouchableOpacity onPress={() => onDeleteNote(noteId)}>
+                  <TouchableOpacity onPress={() => {
+                    Alert.alert(
+                      "Deleting Note", 
+                      "Are you sure you want to delete this note?",
+                      [
+                        {
+                          text: "Delete",
+                          onPress: () => onDeleteNote(noteId)
+                        },
+                        {
+                          text: "Cancel",
+                          onPress: () => console.log("cancelled")
+                        }
+                      ]
+                    )}}
+                  >
                     <Icon 
                       name="trash" 
                       type="ionicon" 
@@ -219,7 +234,23 @@ export function NotesNavigator() {
                       />
                   </TouchableOpacity>
                   <Spacer position="right" size="large" />
-                  <TouchableOpacity onPress={() => onDeleteChecklist(checklistId)}>
+                  <TouchableOpacity onPress={() => {
+                    Alert.alert(
+                      "Deleting Checklist", 
+                      "Are you sure you want to delete this checklist?",
+                      [
+                        {
+                          text: "Delete",
+                          onPress: () => onDeleteChecklist(checklistId)
+                        },
+                        {
+                          text: "Cancel",
+                          style: "cancel",
+                          onPress: () => console.log("cancelled")
+                        }
+                      ]
+                    )}}
+                  >
                     <Icon 
                       name="trash" 
                       type="ionicon" 

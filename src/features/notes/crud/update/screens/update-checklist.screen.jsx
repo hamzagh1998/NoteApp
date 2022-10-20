@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 
 import { getChecklist, updateChecklist } from "../../../../../api/checklist";
@@ -51,6 +52,7 @@ export function UpdateChecklistScreen({ navigation, route }) {
               onUpdate={onUpdate}
             />
       }
+      { error ? Alert.alert("Error", error) : null}
     </SafeAreaContainer>
   );
 };

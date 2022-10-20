@@ -20,7 +20,9 @@ export function CreateCheckListComponent({ checklist, setChecklist, onSaveCheckl
   const bgColor = currentTheme.bgColors.secondary;
   const color = currentTheme.colors.primary;
 
+  const [itemId, setItemId] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [visible2, setVisible2] = useState(false);
   const [itemValue, setItemValue] = useState("");
 
   const onCreateItem = () => {
@@ -30,6 +32,13 @@ export function CreateCheckListComponent({ checklist, setChecklist, onSaveCheckl
     newItems.push(item);
 
     setChecklist({...checklist, items: newItems});
+    setItemValue("");
+  };
+
+  const onUpdateItem = () => {
+    const item = items.filter(item => item.id === itemId)[0];
+    item.title = itemValue;
+    setVisible2(false);
     setItemValue("");
   };
 
@@ -74,6 +83,14 @@ export function CreateCheckListComponent({ checklist, setChecklist, onSaveCheckl
                   containerStyle={styles(bgColor, "").checkBoxContainerStyle}
                   textStyle={styles("", color).checkBoxtextStyle}
                 />
+                <TouchableOpacity onPress={() => {
+                   setItemId(item.id);
+                   setItemValue(item.title);
+                   setVisible2(true);
+                  }}
+                >
+                  <Icon name="pencil" type="ionicon" color="#48dbfb" />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => onDeleteItem(item.id)}>
                   <Icon name="trash" type="ionicon" color="#f33" />
                 </TouchableOpacity>
@@ -123,6 +140,27 @@ export function CreateCheckListComponent({ checklist, setChecklist, onSaveCheckl
             : null
         }
       </Dialog>
+      <Dialog
+        overlayStyle={styles(bgColor).dialogStyle}
+        isVisible={visible2}
+        onBackdropPress={() => {
+          setVisible2(false);
+          setItemValue("");
+        }}
+      >
+        <Dialog.Title title="Update item!"/>
+        <Input 
+          inputStyle={{color: color}}
+          value={itemValue}
+          onChangeText={text => setItemValue(text)}
+          placeholder="Enter item value"
+        />
+        {
+          itemValue
+            ? <Button onPress={onUpdateItem}>Update</Button>
+            : null
+        }
+      </Dialog>
     </View>
   );
 };
@@ -146,7 +184,7 @@ const styles = (bgColor="", color="") => (StyleSheet.create({
     justifyContent: "space-between"
   },  
   checkBoxContainerStyle: {
-    width: "85%",
+    width: "75%",
     backgroundColor: bgColor,
     alignSelf: "center",
     justifyContent: "center",

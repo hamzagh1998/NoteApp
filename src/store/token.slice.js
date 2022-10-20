@@ -1,17 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: null,
-  isLoading: true,
+  value: null
 };
 
 export const tokenSlice = createSlice({
   name: "token",
   initialState,
   reducers: {
-    setStoredToken: (state, {payload: {token, isLoading}}) => {
+    setStoredToken: (state, {payload: {token}}) => {
       state.value = token;
-      state.isLoading = isLoading;
     }
   }
 });
