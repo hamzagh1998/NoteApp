@@ -8,7 +8,7 @@
     <img src="https://m-note-app.herokuapp.com/screenshots/s1.png" />
   </div>
   <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s2.png" />
+    <img src="https://m-note-app.herokuapp.com/screenshots/s2.png" width="60px" height="60px" />
   </div>
   <div style="width:60px ; height:60px">
     <img src="https://m-note-app.herokuapp.com/screenshots/s3.png" />
