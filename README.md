@@ -4,30 +4,14 @@
 
 ## Screenshots
 <div style="display: flex; flex-wrap: wrap">
-  <div style="width: 60px ; height: 60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s1.png" width="320" height="320" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s2.png" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s3.png" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s4.png" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s5.png" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s6.png" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s7.png" />
-  </div>
-  <div style="width:60px ; height:60px">
-    <img src="https://m-note-app.herokuapp.com/screenshots/s8.png" />
-  </div>
+  <img src="https://m-note-app.herokuapp.com/screenshots/s1.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s2.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s3.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s4.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s5.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s6.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s7.png" width="200" height="400" />
+  <img src="https://m-note-app.herokuapp.com/screenshots/s8.png" width="200" height="400" />
 </div>
 
 ## Description
